@@ -2,3 +2,4 @@ f_B/applogs/*.log
 f_B/dblogs/*.log
 f_B/db.config
 go_with_github/Existing_repo/key_generation
+/Go/
