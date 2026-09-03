@@ -1,0 +1,21 @@
+In Go, there is no built-in Copy() or Clone() method like in some object-oriented languages (e.g., Java). 
+  
+Instead, copying and cloning are done manually or through helper functions, depending on the type of data you're working with.
+
+Copy in Go (Shallow Copy)
+A shallow copy means copying only the top-level structure; any referenced data (e.g., pointers, slices, maps) still point to the same memory.
+
+type Person struct {
+	Name string
+	Age  int
+}
+
+func main() {
+	p1 := Person{Name: "Alice", Age: 25}
+	p2 := p1 // shallow copy
+
+	p2.Name = "Bob"
+
+	fmt.Println(p1.Name) // "Alice" - unaffected
+	fmt.Println(p2.Name) // "Bob"
+}

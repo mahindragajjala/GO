@@ -1,0 +1,143 @@
+Here’s a curated list of coding questions to practice pipelines in Go, progressing from basic to advanced. These problems help you build intuition around pipelines, channels, concurrency, fan-out/fan-in, cancellation, and error handling.
+
+
+
+ 🟢 Beginner Level: Basic Pipeline Concepts
+
+1. Number Doubler
+    Read a list of integers and double each value using a pipeline.
+    Stages: Generator → Doubler → Printer
+
+2. Sentence Word Splitter
+    Given a list of sentences, split each into words.
+    Stages: Generator → Splitter → Printer
+
+3. Even Number Filter
+    Filter even numbers from a list.
+    Stages: Generator → Filter → Printer
+
+4. Uppercase Transformer
+    Convert lowercase words to uppercase.
+    Stages: Generator → ToUpper → Printer
+
+5. String Reverser
+    Reverse each string in a pipeline.
+    Stages: Generator → Reverser → Printer
+
+
+
+ 🟡 Intermediate Level: Pipeline Composition and Optimization
+
+ 
+input -> [Stage1] -> [Stage2] -> [Stage3] -> output
+          |           |           |
+        chan1       chan2       chan3
+
+6. Multi-stage Arithmetic
+    For a list of numbers, apply: square → add 10 → halve
+    Stages: Generator → Square → Add10 → Halve → Printer
+
+7. Word Length Filter
+    From sentences, extract words > 5 letters.
+    Stages: Generator → Split → Filter → Printer
+
+8. Buffered Pipeline Performance
+    Implement a pipeline using buffered channels to measure performance difference.
+
+9. Worker Pool for Heavy Computation
+    Use a pool of goroutines to compute factorials for a list of numbers.
+    Stages: Generator → Worker Pool → Printer
+
+10. Pipeline Timer
+     Measure how long each stage takes in a pipeline.
+
+
+
+ 🔴 Advanced Level: Fan-Out, Fan-In, Context Cancellation, Errors
+
+11. Fan-Out Fan-In Prime Filter
+     Generate numbers, filter primes using multiple workers, and merge results.
+       
+12. Concurrent File Processor
+     Given a list of filenames, read file content concurrently, clean text, and count word frequency.
+
+13. Context Cancellation in Pipeline
+     Cancel the pipeline if a word “STOP” is encountered.
+
+14. Pipeline with Error Handling
+     Simulate errors in one stage (e.g., division by zero), propagate and stop pipeline safely.
+
+15. Rate-Limited Pipeline
+     Limit the rate of data processing using time.Ticker or time.Sleep.
+
+16. Streaming Log Processor
+     Process a real-time stream of logs, filter by log level, and write to output concurrently.
+
+17. Chained Transformations on Images (mock)
+     Simulate stages like resize → grayscale → watermark → save using image filenames.
+
+18. CSV Processing Pipeline
+     Load CSV rows, filter rows, map fields, and write to output.
+
+19. Real-time Alert System
+     Simulate real-time sensor data and use pipeline stages to detect anomalies.
+
+20. Deadlock Debugger
+     Create a pipeline with an intentional deadlock and then fix it.
+
+
+
+ 🧠 Tip:
+
+For each problem:
+
+* Start with sequential stages.
+* Gradually introduce goroutines, channels, context, sync.WaitGroup, etc.
+* Add logging to see concurrency in action.
+
+
+1. Create a simple pipeline with two stages: Square numbers in stage 1 and double them in stage 2.
+2. Read integers from a slice and send them into a channel (source stage).
+3. Build a fan-out stage that reads from one input channel and writes to multiple output channels.
+4. Implement a fan-in stage that merges multiple input channels into a single output channel.
+5. Create a stage that filters even numbers.
+6. Use goroutines and channels to simulate a 3-stage pipeline: input → square → output.
+7. Pass string data through a 2-stage pipeline (e.g., trim → uppercase).
+8. Use `sync.WaitGroup` to wait for all pipeline stages to complete.
+9. Implement a pipeline stage that limits throughput using `time.Sleep`.
+10. Add a stage that stops processing on receiving a signal from `context.Context`.
+11. Chain multiple transformations in a pipeline (e.g., filter → map → reduce).
+12. Process a file line by line using a pipeline with stages: read → parse → analyze.
+13. Create a pipeline that performs I/O-bound operations (e.g., HTTP GET calls).
+14. Use `select` to add timeout or cancellation logic in a stage.
+15. Handle channel closure gracefully between stages.
+16. Implement error propagation between stages using an error channel.
+17. Create a worker pool pipeline that processes jobs in parallel (map-reduce style).
+18. Implement backpressure handling using buffered channels.
+19. Build a concurrent log processing pipeline: read → parse JSON → enrich → write.
+20. Design a pipeline that allows dynamic addition/removal of stages at runtime.
+21. Use `context.WithTimeout` and `context.WithCancel` in long-running pipelines.
+22. Benchmark a pipeline's performance with different numbers of workers per stage.
+23. Design a pipeline where some stages are CPU-bound and some are I/O-bound.
+24. Write unit tests for each pipeline stage using table-driven tests.
+25. Build a pipeline to process large CSV files concurrently (read → parse → filter → aggregate).
+26. Optimize a pipeline using channel buffering and goroutine limiting.
+27. Build a fault-tolerant pipeline with retry logic at each stage.
+28. Implement a pipeline stage that batches data before forwarding.
+29. Create a DAG-based pipeline (not strictly linear) using Go channels.
+30. Monitor and log pipeline latency at each stage.
+31. Add metrics for pipeline stages using Prometheus-compatible format.
+32. Create a dynamic pipeline where the stages are created based on config at runtime.
+33. Implement a multistage image processing pipeline using goroutines (e.g., load → resize → watermark → save).
+34. Design a pipeline for message transformation in a real-time chat system.
+35. Build a pipeline with priority queue logic between stages.
+
+---
+
+Would you like me to:
+
+* Expand any of these questions into full code examples?
+* Group them into topics like: fan-in, fan-out, cancellation, batching, etc.?
+* Provide a roadmap or progression to solve them step by step?
+
+Let me know!

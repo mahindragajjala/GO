@@ -1,0 +1,213 @@
+1. Check whether a key exists.
+2. Find a missing key.
+3. Distinguish zero value from missing key
+Given:
+        scores := map[string]int{
+            "Alice": 0,
+            "Bob":   100,
+        }
+- Write code that determines whether "Alice" exists?
+- Output should be:
+                    Alice exists
+                    Score: 0
+4. Count occurrences using a map, Using the comma-ok while updating/checking the map.
+
+package main
+
+import "fmt"
+
+func main() {
+	words := []string{
+		"go", "java", "go", "python",
+		"go", "java",
+	}
+
+	frequency := make(map[string]int)
+
+	for _, word := range words {
+		count, ok := frequency[word]
+
+		if ok {
+			frequency[word] = count + 1
+		} else {
+			frequency[word] = 1
+		}
+	}
+
+	fmt.Println(frequency)
+}
+
+5. Safely extract a string
+- Write code that checks whether value contains a string.
+
+6. Handle wrong type
+- Try to extract it as a string.
+- Value is not a string.
+- the program must not panic.
+
+7. Handle multiple types
+    values := []interface{}{
+        "Golang",
+        100,
+        true,
+        25.5,
+    }
+
+package main
+
+import "fmt"
+
+func main() {
+	values := []interface{}{
+		"Golang",
+		100,
+		true,
+		25.5,
+	}
+
+	for _, value := range values {
+
+		if v, ok := value.(string); ok {
+			fmt.Println("String:", v)
+		}
+
+		if v, ok := value.(int); ok {
+			fmt.Println("Integer:", v)
+		}
+
+		if v, ok := value.(bool); ok {
+			fmt.Println("Boolean:", v)
+		}
+
+		if v, ok := value.(float64); ok {
+			fmt.Println("Float:", v)
+		}
+	}
+}
+
+8. Extract only integers
+
+9. Detect channel closure
+10. Read until channel closes
+11. Use for range vs comma-ok
+12. Buffered channel + closed channel
+- This tests whether you understand buffered channels + closed channels + comma-ok.
+
+13.
+- func findUser(users map[int]string, id int) (string, bool)
+- the function should return: true/false
+- name, ok := findUser(users, 101)
+- Expected behavior: User found: Mahindra
+- or: User not found
+
+14.
+data := map[string]interface{}{
+    "name": "Mahindra",
+    "age":  25,
+}
+Use both:
+value, ok := data["name"] and 
+name, ok := value.(string)
+
+15. Generic configuration reader
+config := map[string]interface{}{
+    "port":    8080,
+    "host":    "localhost",
+    "enabled": true,
+}
+- Write code that safely reads each configuration value and verifies its type.
+- 
+Host: localhost
+Port: 8080
+Enabled: true
+- If the type is wrong, print an appropriate message instead of panicking.
+
+16. First non-repeating character.
+"swiss" - Use a map and comma-ok.
+
+17. Find duplicate numbers
+18. Find missing IDs
+19. Employee lookup system
+20.
+    employees := map[int]string{
+        101: "Mahindra",
+        102: "Rahul",
+        103: "Kiran",
+    }
+write: func getEmployee(id int) (string, bool)
+- Then repeatedly accept employee IDs from the user.
+
+
+CHALLENGE QUESTION'S
+Challenge 1
+- What will this program print?
+        package main
+
+        import "fmt"
+
+        func main() {
+            m := map[string]int{
+                "A": 0,
+            }
+
+            value, ok := m["A"]
+
+            fmt.Println(value, ok)
+
+            value, ok = m["B"]
+
+            fmt.Println(value, ok)
+        }
+
+Challenge 2
+- What will this print?
+        package main
+
+        import "fmt"
+
+        func main() {
+            var x interface{} = 100
+
+            value, ok := x.(int)
+
+            fmt.Println(value, ok)
+
+            value, ok = x.(string)
+
+            fmt.Println(value, ok)
+        }
+
+Challenge 3
+- What will this print?
+        package main
+
+        import "fmt"
+
+        func main() {
+            ch := make(chan int, 2)
+
+            ch <- 10
+            ch <- 20
+
+            close(ch)
+
+            value, ok := <-ch
+            fmt.Println(value, ok)
+
+            value, ok = <-ch
+            fmt.Println(value, ok)
+
+            value, ok = <-ch
+            fmt.Println(value, ok)
+        }
+
+Challenge 4 — Interview-level
+func getString(data map[string]interface{}, key string) (string, bool)
+
+It should:
+- Check whether the key exists.
+- Check whether the value is a string.
+- Return the string if valid.
+- Return false if the key doesn't exist.
+- Return false if the value isn't a string.
+- Never panic.

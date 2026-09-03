@@ -1,0 +1,22 @@
+Deep copy means copying all nested references too—so the new object is completely independent.
+
+You need to do this manually, or use helper libraries like copier, mergo, or JSON serialization.
+
+type Address struct {
+	City string
+}
+type Person struct {
+	Name    string
+	Age     int
+	Address *Address
+}
+
+// DeepCopy function
+func (p *Person) DeepCopy() *Person {
+	newAddr := &Address{City: p.Address.City}
+	return &Person{
+		Name:    p.Name,
+		Age:     p.Age,
+		Address: newAddr,
+	}
+}

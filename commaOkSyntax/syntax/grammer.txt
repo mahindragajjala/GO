@@ -1,0 +1,4 @@
+- value, ok := operation or value, ok = operation
+- value = the actual result 
+- ok → a bool indicating success/existence
+- operation → something that produces two values

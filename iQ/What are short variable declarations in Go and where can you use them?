@@ -1,0 +1,13 @@
+What are short variable declarations in Go and where can you use them?
+
+In Go, short variable declaration is a convenient way to declare and initialize variables 
+in one step using the := syntax.
+
+
+
+ Rule                                        Explanation                                                                
+
+ Must be used inside a function          Can't be used at the package level (i.e., outside of functions).           
+ Type is inferred automatically          Based on the value on the right-hand side.                                 
+ Can declare multiple variables at once  Like: `a, b := 10, "hello"`                                                
+ At least one variable must be new       You can reuse existing variables, but at least one must be newly declared. 
