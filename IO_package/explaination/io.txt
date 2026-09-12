@@ -1,0 +1,10 @@
+- input/Output
+- I/O is the  movement of data between your go program and something outside the program
+- something - somethind can be a file, keyboard, terminal, network connection, HTTP request, memory buffer, database, pipe etc.
+
+IMPORTANT
+- The io package provides common interfaces and function for reading and writing data.
+- This is extremely important.
+- the io package is not primarily about: How do i read a file?
+- instead, it provides a comman language for moving bytes.
+- These two interfaces are the foundation of a huge amount of Go programming.

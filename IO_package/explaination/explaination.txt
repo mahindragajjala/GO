@@ -1,0 +1,94 @@
+Important Point's:
+- A program constantly needs to receive data and send data.
+- Read a file → Input
+- Write a file → Output
+- Receive HTTP response → Input
+- Send HTTP request → Output
+- Read keyboard input → Input
+- Print to terminal → Output
+- Read data from database connection → Input
+- Send data through TCP → Output
+
+Why did Go create the io package?
+Problem: 
+- The important problem is this:
+- Suppose you want to read data from different sources.
+- You could write separate code for:
+            Read from file
+            Read from network
+            Read from memory
+            Read from HTTP response
+            Read from compressed data
+- But fundamentally, all of them do the same thing:
+- Give me some bytes.
+- Similarly, writing to:
+            File
+            Network
+            Memory
+            HTTP request
+            Terminal
+
+fundamentally means:
+- Take these bytes and put them somewhere.
+- Go therefore created common abstractions around I/O.
+- The most important ones are:
+- io.Reader
+- io.Writer
+- This is the core idea of the io package.
+
+READER
+- Something from which my program can read bytes.
+- A Reader provides a standard way for Go to get bytes from something.
+type Reader interface {
+    Read(p []byte) (n int, err error)
+}
+
+WRITER
+- Something to which my program can write bytes.
+type Writer interface {
+    Write(p []byte) (n int, err error)
+}
+
+WHY INTERFACE'S ARE USEFUL HERE..?
+- This is where io becomes really powerful.
+- Suppose you write a function:
+                                func process(r io.Reader) {
+                                    // read data
+                                }
+It doesn't matter whether r is:
+                                File
+                                HTTP response
+                                TCP connection
+                                Memory buffer
+                                Compressed reader        
+
+There are core interface's.
+    io.Reader
+    io.Writer
+    io.Closer
+    io.Seeker
+    io.ReaderAt
+    io.WriterAt 
+
+Important function's:
+    io.Copy()
+    io.ReadAll()
+    io.ReadFull()
+    io.CopyN()
+
+Useful combinations
+        io.ReadWriter
+        io.ReadCloser
+        io.WriteCloser
+        io.ReadWriteCloser
+
+- io is about general input/output abstraction's.
+- os: Deals with the operating - system resources.
+    os.Open()
+    os.Create()
+- bufio: Can provide an in-memory reader.
+- bytes: provides byte buffers/readers/writers.
+So these packages work together.
+
+- io.Reader = "Give me bytes"
+- io.Writer = "Take these bytes"
